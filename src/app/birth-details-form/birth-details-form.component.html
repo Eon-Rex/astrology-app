@@ -1,0 +1,56 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #birthForm="ngForm" autocomplete="off">
+    <div class="form-group mb-3">
+      <label for="name">Full Name <span style="color:red">*</span></label>
+      <input id="name" name="name" class="form-control" [(ngModel)]="name" required minlength="2" #nameField="ngModel" />
+      <div *ngIf="nameField.invalid && nameField.touched" class="text-danger small">Name is required.</div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="dob">Date of Birth <span style="color:red">*</span></label>
+      <input id="dob" name="dob" class="form-control" type="date" [(ngModel)]="dob" required #dobField="ngModel" />
+      <div *ngIf="dobField.invalid && dobField.touched" class="text-danger small">Date of birth is required.</div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="state">State <span style="color:red">*</span></label>
+      <select id="state" name="state" class="form-control" [(ngModel)]="state" required (change)="onStateChange()" #stateField="ngModel">
+        <option value="" disabled selected>Select state</option>
+        <option *ngFor="let s of states" [value]="s">{{ s }}</option>
+      </select>
+      <div *ngIf="stateField.invalid && stateField.touched" class="text-danger small">State is required.</div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="city">City <span style="color:red">*</span></label>
+      <select id="city" name="city" class="form-control" [(ngModel)]="city" required [disabled]="!state" #cityField="ngModel">
+        <option value="" disabled selected>Select city</option>
+        <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+      </select>
+      <div *ngIf="cityField.invalid && cityField.touched" class="text-danger small">City is required.</div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="time">Time of Birth <span style="color:red">*</span></label>
+      <input id="time" name="time" class="form-control" type="time" [(ngModel)]="time" required #timeField="ngModel" />
+      <div *ngIf="timeField.invalid && timeField.touched" class="text-danger small">Time of birth is required.</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2 w-100" [disabled]="!birthForm.valid || loading">
+      {{ loading ? 'Generating...' : 'Generate Astrology Report' }}
+    </button>
+  </form>
+
+  <div *ngIf="loading" class="mt-3 text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p>Loading...</p>
+  </div>
+
+  <div *ngIf="error" class="alert alert-danger mt-3">{{ error }}</div>
+
+  <app-astrology-report *ngIf="report" [report]="report"></app-astrology-report>
+
+  <button *ngIf="report" class="btn btn-success mt-2 w-100" (click)="downloadReport()">Download Report</button>
+</div>

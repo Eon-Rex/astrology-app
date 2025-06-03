@@ -1,0 +1,77 @@
+<div *ngIf="report && report.data" class="report-container">
+  <div class="report-header">
+    <h2>Astrology Report for {{report.data.name}}</h2>
+    <p>
+      <strong>Birth Date:</strong> {{report.data.birthDate | date:'longDate'}}<br>
+      <strong>Birth Time:</strong> {{report.data.formattedTime || report.data.birthTime}}<br>
+      <strong>Birth Place:</strong> {{report.data.place || report.data.birthPlace}}
+    </p>
+    <p>
+      <strong>Moon Sign:</strong> {{report.data.moonSign}}<br>
+      <strong>Ascendant Sign:</strong> {{report.data.ascendantSign}}
+    </p>
+  </div>
+
+  <div class="report-section">
+    <h3>Planets</h3>
+    <table class="table table-bordered table-sm w-100">
+      <thead>
+        <tr>
+          <th>Planet</th>
+          <th>Sign</th>
+          <th>Degree</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of report.data.planets">
+          <td>{{p.planet}}</td>
+          <td>{{p.sign}}</td>
+          <td>{{p.degree | number:'1.2-2'}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="report-section" *ngIf="report.data.planetaryStrengths?.length">
+    <h3>Planetary Strengths</h3>
+    <ul>
+      <li *ngFor="let s of report.data.planetaryStrengths">{{s}}</li>
+    </ul>
+  </div>
+
+  <div class="report-section" *ngIf="report.data.yogas?.length">
+    <h3>Yogas</h3>
+    <ul>
+      <li *ngFor="let y of report.data.yogas">{{y}}</li>
+    </ul>
+  </div>
+
+  <div class="report-section" *ngIf="report.data.healthAnalysis">
+    <h3>Health Analysis</h3>
+    <p>{{report.data.healthAnalysis}}</p>
+  </div>
+
+  <div class="report-section" *ngIf="report.data.careerAnalysis">
+    <h3>Career Analysis</h3>
+    <p>{{report.data.careerAnalysis}}</p>
+  </div>
+
+  <div class="report-section" *ngIf="report.data.relationshipsAnalysis">
+    <h3>Relationships Analysis</h3>
+    <p>{{report.data.relationshipsAnalysis}}</p>
+  </div>
+
+  <div class="report-section" *ngIf="report.data.financesAnalysis">
+    <h3>Finances Analysis</h3>
+    <p>{{report.data.financesAnalysis}}</p>
+  </div>
+
+  <div class="report-section" *ngIf="report.data.lifePrediction">
+    <h3>Life Prediction</h3>
+    <p>{{report.data.lifePrediction}}</p>
+  </div>
+
+  <div class="report-footer">
+    <p>Generated on {{report.data.generatedDate | date:'medium'}}</p>
+  </div>
+</div>

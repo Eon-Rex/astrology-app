@@ -1,0 +1,30 @@
+@import 'assests/styles/variables.css';
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: var(--background-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+}
+
+section{
+  min-height: 100vh;
+  padding: 80px 50px 50px 180px;
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: 80px 20px 50px 20px;
+    
+  }
+}
+
+h1,h2,h3{
+  font-family: 'Playfair Display', serif;
+  color: var(--color-gold);
+}

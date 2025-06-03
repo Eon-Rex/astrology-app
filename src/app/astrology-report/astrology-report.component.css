@@ -1,0 +1,43 @@
+.report-container {
+  background-color: #f4f7fa;
+  padding: 30px;
+  margin-top: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.report-header h2 {
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.report-header p {
+  color: #555;
+  font-size: 14px;
+}
+
+.report-section {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: #ffffff;
+  border-left: 4px solid #007bff;
+  border-radius: 6px;
+}
+
+.report-section h3 {
+  margin-bottom: 10px;
+  color: #007bff;
+}
+
+.report-section div {
+  color: #333;
+  line-height: 1.6;
+}
+
+.report-footer {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #888;
+  text-align: right;
+}
